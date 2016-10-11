@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
                             view.loadUrl("javascript:(function() { document.getElementById('userNameInput').value = '" + user + "'; })()");
                             view.loadUrl("javascript:(function() { document.getElementById('passwordInput').value = '" + password + "'; })()");
-                            view.loadUrl("javascript:(function() { document.getElementById('submitButton').click(); })()");
+                            //view.loadUrl("javascript:(function() { document.getElementById('submitButton').click(); })()");
+                            view.loadUrl("javascript: document.forms['loginForm'].submit()");
                             stage++;
                         }
                         else if(view.getUrl().contains("https://istudent.urfu.ru/s/schedule/"))
