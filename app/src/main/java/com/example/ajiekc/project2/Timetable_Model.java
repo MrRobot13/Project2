@@ -12,8 +12,6 @@ public class Timetable_Model implements Serializable {
     public String activeDay;
     public Map<String,String> timetable;
     public String activeWeeekday;
-	public String herny;
-
 
     public Timetable_Model() {}
 

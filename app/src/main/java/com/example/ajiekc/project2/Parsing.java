@@ -12,8 +12,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -166,18 +164,29 @@ public class Parsing {
 
         Elements date = doc.getElementsByClass("training-schedule");
 
-        Elements vs = date.first().getElementsByClass("date");
-        activeDay = vs.eq(0).text();
+        //timetable = new LinkedHashMap<>();
 
-        timetable = new LinkedHashMap<>();
-        Elements vl = date.first().getElementsByClass("training-schedule-cont");
-        Elements dd = vl.first().getElementsByClass("day-on-week");
-        activeWeeekday = dd.eq(0).text();
+        for(Element lol : date)
+        {
+            Elements vl = lol.getElementsByClass("training-schedule-cont");
 
-        Elements links = vl.eq(0).first().getElementsByTag("td");
-        for(Element el : links)
-            timetable.put(el.text(),el.attr("href"));
+            Elements vs = lol.getElementsByClass("date");
+            activeDay = vs.eq(0).text();
+            Log.i("test",activeDay);
 
-        return SaveData();
+            Elements dd = vl.first().getElementsByClass("day-on-week");
+            activeWeeekday = dd.eq(0).text();
+            Log.i("test",activeWeeekday);
+
+            Elements links = vl.eq(0).first().getElementsByTag("tr");
+            for(Element el : links)
+                Log.i("test",el.text());
+        }
+
+
+            //timetable.put(el.text(),el.attr("href"));
+
+        //return SaveData();
+        return false;
     }
 }
