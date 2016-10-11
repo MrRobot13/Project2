@@ -1,4 +1,7 @@
-#Tue Oct 11 20:31:38 YEKT 2016
-base.0=C\:\\GitHub\\Project2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
-renamed.0=classes.dex
-file.0=C\:\\GitHub\\Project2\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
+#Tue Oct 11 00:34:12 YEKT 2016
+base.0=C\:\\Project2-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_bae2df8524db78ab3cb4c68b99bd260d4066b176
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\Project2-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_455e3032c15777e080166ac378291ae0589c9380\\classes.dex
+base.1=C\:\\Project2-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_455e3032c15777e080166ac378291ae0589c9380
+file.0=C\:\\Project2-master\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_bae2df8524db78ab3cb4c68b99bd260d4066b176\\classes.dex
