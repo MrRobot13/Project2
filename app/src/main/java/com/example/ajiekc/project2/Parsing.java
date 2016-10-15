@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class Parsing {
 
 
     private String activeDay;
-    private Map<String,String> timetable;
+    private ArrayList<String> timetable;
     private String activeWeeekday;
 
 
@@ -126,13 +127,12 @@ public class Parsing {
         try {
             FileOutputStream fos = context.openFileOutput("Timetable_Model", Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(new Timetable_Model(activeDay, timetable, activeWeeekday));
+            os.writeObject(new Timetable_Model(activeDay, activeWeeekday, timetable));
             os.close();
             fos.close();
             return true;
         }
         catch (Exception e){ Log.e("test",e.toString()); return false;}
-
     }
 
     public boolean LoadData2()
@@ -146,9 +146,8 @@ public class Parsing {
             Log.i("test", "Load data completed!");
             Log.i("test", tTabl.activeDay);
             Log.i("test", tTabl.activeWeeekday);
-            for (Map.Entry entry : tTabl.timetable.entrySet()) {
-                Log.i("test", entry.getKey().toString());
-                Log.i("test", entry.getValue().toString());
+            for (String entry : tTabl.timetable) {
+                Log.i("test", entry);
             }
         }
         catch (Exception e){
@@ -158,13 +157,13 @@ public class Parsing {
         return true;
     }
 
+    ArrayList<Timetable_Model> list = new ArrayList<Timetable_Model>();
+
     public boolean ParsTimetable()
     {
         Document doc = Jsoup.parse(html);
 
         Elements date = doc.getElementsByClass("training-schedule");
-
-        //timetable = new LinkedHashMap<>();
 
         for(Element lol : date)
         {
@@ -172,21 +171,30 @@ public class Parsing {
 
             Elements vs = lol.getElementsByClass("date");
             activeDay = vs.eq(0).text();
-            Log.i("test",activeDay);
+            //Log.i("test",activeDay);
 
             Elements dd = vl.first().getElementsByClass("day-on-week");
             activeWeeekday = dd.eq(0).text();
-            Log.i("test",activeWeeekday);
+            //Log.i("test",activeWeeekday);
 
+            timetable = new ArrayList<>();
             Elements links = vl.eq(0).first().getElementsByTag("tr");
             for(Element el : links)
-                Log.i("test",el.text());
+                timetable.add(el.text());
+
+            list.add(new Timetable_Model(activeDay, activeWeeekday, timetable));
         }
 
+        int in = list.size();
+        Log.i("test", String.valueOf(in));
+        for (Timetable_Model ss : list)
+        {
+            Log.i("test",ss.activeDay);
+            Log.i("test", ss.activeWeeekday);
+            for (String e : ss.timetable)
+                Log.i("test", e);
+        }
 
-            //timetable.put(el.text(),el.attr("href"));
-
-        //return SaveData();
-        return false;
+        return SaveData();
     }
 }

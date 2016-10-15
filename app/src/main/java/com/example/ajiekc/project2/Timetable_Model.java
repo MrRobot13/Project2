@@ -1,6 +1,10 @@
 package com.example.ajiekc.project2;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -10,13 +14,12 @@ import java.util.Map;
 public class Timetable_Model implements Serializable {
 
     public String activeDay;
-    public Map<String,String> timetable;
+    public ArrayList<String> timetable;
     public String activeWeeekday;
 
     public Timetable_Model() {}
 
-    public Timetable_Model(String activeDay, Map<String,String> timetable,
-                           String activeWeeekday)
+    public Timetable_Model(String activeDay, String activeWeeekday, ArrayList<String> timetable)
     {
         this.activeDay = activeDay;
         this.activeWeeekday = activeWeeekday;
