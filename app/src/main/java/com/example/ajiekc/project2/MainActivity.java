@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -72,7 +73,13 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface
         public void GetTimetable(String html) throws IOException {
             Parsing p = new Parsing(html,context);
-            if(p.ParsTimetable()) p.LoadData2();
+
+            ArrayList<Timetable_Model> list = p.ParsTimetable();
+
+            ArrayList<String> lol = list.get(0).timetable;
+            String pzdc = lol.get(0);
+            Log.e("test",pzdc.split("\n")[5]);
+
         }
     }
 

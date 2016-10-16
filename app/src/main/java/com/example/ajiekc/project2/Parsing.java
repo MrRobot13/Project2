@@ -159,7 +159,7 @@ public class Parsing {
 
     ArrayList<Timetable_Model> list = new ArrayList<Timetable_Model>();
 
-    public boolean ParsTimetable()
+    public ArrayList<Timetable_Model> ParsTimetable()
     {
         Document doc = Jsoup.parse(html);
 
@@ -180,7 +180,18 @@ public class Parsing {
             timetable = new ArrayList<>();
             Elements links = vl.eq(0).first().getElementsByTag("tr");
             for(Element el : links)
-                timetable.add(el.text());
+            {
+                String d = el.getElementsByTag("td").eq(0).text();
+                String n = el.getElementsByTag("td").eq(1).text();
+                Element r = el.getElementsByTag("td").eq(2).first();
+                String sub = r.getElementsByTag("strong").first().text();
+                Elements inf_str = r.getElementsByClass("info");
+                String inf = "";
+                for(Element i : inf_str)
+                    inf += i.text() + "\n";
+
+                timetable.add(d + "\n" + n + "\n" + sub + '\n' + inf);
+            }
 
             list.add(new Timetable_Model(activeDay, activeWeeekday, timetable));
         }
@@ -194,7 +205,7 @@ public class Parsing {
             for (String e : ss.timetable)
                 Log.i("test", e);
         }
-
-        return SaveData();
+        return list;
+        //return SaveData();
     }
 }
